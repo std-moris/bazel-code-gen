@@ -6,7 +6,6 @@ py_binary(
     visibility = ["//visibility:public"],
 )
 
-# Referenced by the conf_generator rule's private _template_file attr.
 filegroup(
     name = "template",
     srcs = ["conf_generator_template.h"],

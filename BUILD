@@ -1,19 +1,15 @@
 load("@rules_cc//cc:cc_binary.bzl", "cc_binary")
-load("//conf_generator:conf_generator.bzl", "conf_generator")
+load("//conf_generator:conf_generator.bzl", "cc_generated_library")
 
-conf_generator(
-    name = "conf_generator",
+cc_generated_library(
+    name = "file",
+    output_path = "path/to/generated",
     json_file = "conf.json",
-    out_file="path/to/generated/file.h",
-	namespace="generated::space",
+    namespace = "generated::space",
 )
-
 
 cc_binary(
-	name="code_gen_example",
-	srcs = [
-		"main.cpp",
-		":conf_generator",
-	],
+    name = "code_gen_example",
+    srcs = ["main.cpp"],
+    deps = [":file"],
 )
-
