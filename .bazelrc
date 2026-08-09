@@ -1,3 +1,10 @@
-build:strict --features=layering_check
+build --cxxopt=-std=c++20
+build --host_cxxopt=-std=c++20
+
 build:strict --features=parse_headers
 build:strict --repo_env=CC=clang
+
+build:hmon_real_a --//health:hmon=real_a
+build:hmon_real_b --//health:hmon=real_b
+
+common --incompatible_autoload_externally=+py_binary,+cc_binary
