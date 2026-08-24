@@ -30,3 +30,33 @@ enum class Checkpoint : std::uint8_t
 
 #endif // BAZEL_OUT_K8_FASTBUILD_BIN_PATH_TO_GENERATED_FILE_H_
 ```
+
+## Health API
+
+## Motivation
+Clients of health should include a single library and have everything working. the actual implementation should come from a --config flag.
+
+## How to run
+``` bash
+bazel run --config=hmon_real_b //health/example
+```
+or
+
+```bash
+bazel run --config=hmon_real_a //health/example
+```
+
+## Integration with generated code
+Both real_a and real_b are updated to consume their own config.json files. The output of the example binary looks like this
+``` bash
+bazel run --config=hmon_real_b //health/example
+
+linked health monitor: Real_B
+```
+or
+
+```bash
+bazel run --config=hmon_real_a //health/example
+
+linked health monitor: Real_A
+```
